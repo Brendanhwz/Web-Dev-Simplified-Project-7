@@ -1,45 +1,124 @@
-*, *::before, *::after {
+*, *::after, *::before {
     box-sizing: border-box;
     margin: 0;
 }
-
 body {
-    --nav-background-color: #1B3E70;
+    /* margin: 0; */
+    --nav-bar-duration: 300ms;
+    --nav-bar-link-content-duration: 500ms;
+    --article-content-load-duration: calc(var(--nav-bar-duration) + var(--nav-bar-link-content-duration));
 }
-
 nav {
     width: 100vw;
-    background-color: var(--nav-background-color);
+    background-color: #1B3E70;
+    /* Phase II, (1)Adding of animation to nav bar */
+    animation: nav-bar-load var(--nav-bar-duration) ease-in-out;
 }
-
 nav ul {
-    list-style-type: none;
     padding-left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
 }
 
-nav ul li {
-    padding: 2% 5%;
-    margin: 0 5%;
+nav ul li{
+    list-style-type: none;
+    padding: 10px 30px;
+    margin: 0 4em;
+    animation-duration: var(--nav-bar-link-content-duration);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: var(--nav-bar-duration);
+}
+
+/* Adding of animation to the (1)<li> element */
+nav ul li:first-child {
+    transform: translateX(-800%);
+    animation-name: nav-first-link-content-load;
+}
+
+/* Adding of animation to the (2)<li> element */
+nav ul li:nth-child(2n) {
+   transform: scale(0);
+   animation-name: nav-second-link-content-load;
+}
+
+/* Adding of animation to the (3)<li> element */
+nav ul li:last-child {
+    transform: translateX(800%);
+    animation-name: nav-last-link-content-load;
 }
 
 nav ul li a {
     text-decoration: none;
     color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 nav ul li:hover {
-    background-color: #FFFFFF30;
+    background-color: #FFFFFF44;
 }
 
 section {
-    margin: 5% 5%;
+    margin: 2rem 3rem;
 }
 
 section article h1 {
-    margin-bottom: 1%;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: article-header-load var(--article-content-load-duration) ease-in-out;
 }
 
+/*Phase II, Adding of animation "Keyframes" to the above declared animations*/
+@keyframes nav-bar-load {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Adding of animation to the (1)<li> element */
+@keyframes nav-first-link-content-load {
+    0% {
+        transform: translateX(-800%);
+    }
+    90% {
+        transform: translateX(40%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Adding of animation to the (2)<li> element */
+@keyframes nav-second-link-content-load {
+    0% {
+        transform: scale(0);
+    }
+    90% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Adding of animation to the (3)<li> element */
+@keyframes nav-last-link-content-load {
+    0% {
+        transform: translateX(800%);
+    }
+    90% {
+        transform: translateX(-40%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/*Adding of animation for Part II => Main Content*/
+@keyframes  article-header-load{
+    
+}
