@@ -66,7 +66,27 @@ section {
 
 section article h1 {
     /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-    animation: article-header-load var(--article-content-load-duration) ease-in-out;
+    animation-name: article-header-load;
+    animation-duration: var(--article-content-load-duration);
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-delay: var(--nav-bar-duration);
+    /*Setting the initial-values at keyframes 0%*/
+    margin-bottom: 25px;
+    transform: translateY(-25px);
+    opacity: 0;
+    text-decoration: underline;
+}
+
+section article p {
+    animation-name: article-content-para-load;
+    animation-duration: calc(var(--article-content-load-duration) + 200ms);
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-delay: var(--nav-bar-duration);
+    /*Setting the initial-values at keyframes 0%*/
+    opacity: 0;
+    transform: translateY(-25px);
 }
 
 /*Phase II, Adding of animation "Keyframes" to the above declared animations*/
@@ -119,6 +139,26 @@ section article h1 {
 }
 
 /*Adding of animation for Part II => Main Content*/
-@keyframes  article-header-load{
-    
+/*(1) => For the <h1> header*/
+@keyframes  article-header-load {
+    0% {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*(2) => For the <p> content*/
+@keyframes  article-content-para-load {
+    0% {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
